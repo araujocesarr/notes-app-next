@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import signInAnon from "./firebase/auth/signin_anon";
+import signInAnon from "../firebase/auth/signin_anon";
 
 export default function MainPage() {
   const router = useRouter();

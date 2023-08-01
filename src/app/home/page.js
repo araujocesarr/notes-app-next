@@ -6,11 +6,42 @@ import Sidebar from "../components/Sidebar";
 import Editor from "../components/Editor";
 import Split from "react-split";
 import { nanoid } from "nanoid";
-import { onSnapshot, addDoc, doc, deleteDoc, setDoc } from "firebase/firestore";
+import {
+  onSnapshot,
+  addDoc,
+  doc,
+  deleteDoc,
+  setDoc,
+  where,
+  query,
+  collection,
+} from "firebase/firestore";
 import { notesCollection, db } from "../firebase/config";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import { useAuthContext } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
+import closeUser from "../firebase/auth/signout";
 
 export default function Home() {
+  const { user } = useAuthContext();
+  const router = useRouter();
+
+  const handleSignOut = async (event) => {
+    event.preventDefault();
+    const { result, error } = await closeUser();
+    if (error) {
+      return console.log(error);
+    }
+    console.log(result);
+    return router.push("/");
+  };
+
+  useEffect(() => {
+    if (user === null) {
+      router.push("/redirect");
+    }
+  }, []);
+
   const [notes, setNotes] = useState([]);
   const [currentNoteId, setCurrentNoteId] = useState("");
   const [tempNoteText, setTempNoteText] = useState("");
@@ -20,15 +51,20 @@ export default function Home() {
   const sortedNotes = notes.sort((a, b) => b.updateAt - a.updateAt);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(notesCollection, function (snapshot) {
-      const notesArr = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setNotes(notesArr);
-    });
-    return unsubscribe;
-  }, []);
+    if (user === null) {
+      router.push("/redirect");
+    } else {
+      const q = query(notesCollection, where("userId", "==", user.uid));
+      const unsubscribe = onSnapshot(q, function (snapshot) {
+        const notesArr = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setNotes(notesArr);
+      });
+      return unsubscribe;
+    }
+  }, [user]);
 
   useEffect(() => {
     if (currentNote) {
@@ -59,6 +95,7 @@ export default function Home() {
       body: "# Type your markdown note's title here",
       createdAt: Date.now(),
       updateAt: Date.now(),
+      userId: user.uid,
     };
     const newNoteRef = await addDoc(notesCollection, newNote);
     setCurrentNoteId(newNoteRef.id);
@@ -96,6 +133,7 @@ export default function Home() {
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
             deleteNotes={deleteNotes}
+            signOut={handleSignOut}
           />
           <Editor
             tempNoteText={tempNoteText}

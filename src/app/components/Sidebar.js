@@ -4,8 +4,11 @@ import "react-mde/lib/styles/css/react-mde.css";
 import "react-mde/lib/styles/css/react-mde-toolbar.css";
 import "react-mde/lib/styles/css/react-mde-preview.css";
 import { setAnalyticsCollectionEnabled } from "firebase/analytics";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar(props) {
+  const router = useRouter();
+
   const noteElements = props.notes.map((note, index) => (
     <div key={note.id}>
       <div
@@ -34,6 +37,7 @@ export default function Sidebar(props) {
         <button className={`${styles.new_note}`} onClick={props.newNote}>
           +
         </button>
+        <button onClick={props.signOut}>Cerrar sesión</button>
       </div>
       {noteElements}
     </section>
