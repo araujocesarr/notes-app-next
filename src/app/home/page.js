@@ -25,7 +25,7 @@ import closeUser from "../firebase/auth/signout";
 export default function Home() {
   const { user } = useAuthContext();
   const router = useRouter();
-
+  const [userStatus, setUserStatus] = useState(false);
   const handleSignOut = async (event) => {
     event.preventDefault();
     const { result, error } = await closeUser();
@@ -54,6 +54,7 @@ export default function Home() {
     if (user === null) {
       router.push("/redirect");
     } else {
+      setUserStatus(user.isAnonymous);
       const q = query(notesCollection, where("userId", "==", user.uid));
       const unsubscribe = onSnapshot(q, function (snapshot) {
         const notesArr = snapshot.docs.map((doc) => ({
@@ -128,6 +129,7 @@ export default function Home() {
           className={`${styles.split}`}
         >
           <Sidebar
+            userStatus={userStatus}
             notes={sortedNotes}
             currentNote={currentNote}
             setCurrentNoteId={setCurrentNoteId}

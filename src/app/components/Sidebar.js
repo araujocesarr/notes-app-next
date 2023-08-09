@@ -5,6 +5,7 @@ import "react-mde/lib/styles/css/react-mde-toolbar.css";
 import "react-mde/lib/styles/css/react-mde-preview.css";
 import { setAnalyticsCollectionEnabled } from "firebase/analytics";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Sidebar(props) {
   const router = useRouter();
@@ -38,6 +39,11 @@ export default function Sidebar(props) {
           +
         </button>
         <button onClick={props.signOut}>Cerrar sesión</button>
+        {props.userStatus && (
+          <Link href="/signin-anon">
+            <button>Sign Up</button>
+          </Link>
+        )}
       </div>
       {noteElements}
     </section>

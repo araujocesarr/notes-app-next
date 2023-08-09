@@ -1,0 +1,130 @@
+.form_wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(66, 26, 94, 0.5);
+  margin: 0;
+  color: antiquewhite;
+  font-size: 30px;
+  border-radius: 50px 50px 0 0;
+}
+
+.button__signup {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #37315c;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+  width: 50%;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.button__signup:hover::before {
+  transform: scaleX(1);
+}
+
+.button__signup__content {
+  position: relative;
+  z-index: 1;
+}
+
+.button__signup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+.inputs {
+  padding-top: 20px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(88, 51, 112, 0.5);
+  border-radius: 0 0 50px 50px;
+}
+
+.fields {
+  border-radius: 0 0 50px 50px;
+  color: antiquewhite;
+  margin: 15px auto 0 auto;
+  width: 80%;
+  position: relative;
+}
+
+.fields input {
+  width: 100%;
+  color: antiquewhite;
+  box-sizing: border-box;
+
+  margin-bottom: 18px;
+  font-size: 100%;
+  padding: 0.8em;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+.fields label {
+  border-radius: 20px;
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: antiquewhite;
+}
+
+.fields :is(input:focus, input:valid) ~ label {
+  transform: translateY(-50%) scale(0.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: rgba(88, 51, 112, 0.95);
+}
+
+.fields :is(input:focus) {
+  border-color: rgb(150, 150, 200);
+}
+
+.fields input:not(:placeholder-shown) ~ label {
+  transform: translateY(-50%) scale(0.9);
+
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: rgba(88, 51, 112, 0.95);
+}
+
+.fields input:not(:placeholder-shown) {
+  border-color: rgb(150, 150, 200);
+}
