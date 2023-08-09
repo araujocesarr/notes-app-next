@@ -65,7 +65,7 @@ function Page() {
               </span>
             </button>
             <Link href="/" className={`${styles.link__return}`}>
-              Don't have an account? Back to home
+              Don&apos;t have an account? Back to home
             </Link>
           </div>
         </form>
