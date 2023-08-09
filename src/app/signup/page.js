@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { headers } from "next/dist/client/components/headers";
 import Head from "next/head";
+import Link from "next/link";
 
 function Page() {
   const [email, setEmail] = useState("");
@@ -79,6 +80,9 @@ function Page() {
                 Sign up
               </span>
             </button>
+            <Link href="/signin" className={`${styles.link__return}`}>
+              Do you have an account? Sign in
+            </Link>
           </div>
         </form>
       </div>

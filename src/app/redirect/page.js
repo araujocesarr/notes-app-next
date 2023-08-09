@@ -1,4 +1,5 @@
 "use client";
+import styles from "../page.module.css";
 import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -18,15 +19,38 @@ export default function MainPage() {
     return router.push("/home");
   };
   return (
-    <div>
-      <h1>Notes App</h1>
-      <Link href="/signin">
-        <button>Sign In</button>
-      </Link>
-      <Link href="/signup">
-        <button>Sign Up</button>
-      </Link>
-      <button onClick={handleButton}>Sign In Anónimo</button>
-    </div>
+    <>
+      <style global jsx>{`
+        body {
+          background-image: url("../stacked-waves-haikei.svg");
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 100vh;
+          overflow: hidden;
+        }
+      `}</style>
+      <div className={`${styles.container}`}>
+        <h1 className={`${styles.title}`}>Notes App</h1>
+        <div className={`${styles.wrapper}`}>
+          <Link href="/signin" className={`${styles.link}`}>
+            <button className={`${styles.button__home}`}>
+              <span className={`${styles.button__home__content}`}>Sign In</span>
+            </button>
+          </Link>
+          <Link href="/signup" className={`${styles.link}`}>
+            <button className={`${styles.button__home}`}>
+              <span className={`${styles.button__home__content}`}>Sign Up</span>
+            </button>
+          </Link>
+          <Link href="" className={`${styles.link}`}>
+            <button onClick={handleButton} className={`${styles.button__home}`}>
+              <span className={`${styles.button__home__content}`}>
+                Sign In Anonymously
+              </span>
+            </button>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

@@ -38,14 +38,22 @@ export default function Sidebar(props) {
         <button className={`${styles.new_note}`} onClick={props.newNote}>
           +
         </button>
-        <button onClick={props.signOut}>Cerrar sesión</button>
+      </div>
+      <div className={`${styles.notes__list}`}>{noteElements}</div>
+      <div className={`${styles.notes__buttons}`}>
+        <button className={`${styles.button__notes}`} onClick={props.signOut}>
+          <span className={`${styles.button__notes__content}`}>Sign Out</span>
+        </button>
         {props.userStatus && (
-          <Link href="/signin-anon">
-            <button>Sign Up</button>
+          <Link href="/signin-anon" className={`${styles.link}`}>
+            <button className={`${styles.button__notes}`}>
+              <span className={`${styles.button__notes__content}`}>
+                Sign Up
+              </span>
+            </button>
           </Link>
         )}
       </div>
-      {noteElements}
     </section>
   );
 }

@@ -121,35 +121,55 @@ export default function Home() {
   }
 
   return (
-    <main>
-      {notes.length > 0 ? (
-        <Split
-          sizes={[30, 70]}
-          direction="horizontal"
-          className={`${styles.split}`}
-        >
-          <Sidebar
-            userStatus={userStatus}
-            notes={sortedNotes}
-            currentNote={currentNote}
-            setCurrentNoteId={setCurrentNoteId}
-            newNote={createNewNote}
-            deleteNotes={deleteNotes}
-            signOut={handleSignOut}
-          />
-          <Editor
-            tempNoteText={tempNoteText}
-            setTempNoteText={setTempNoteText}
-          />
-        </Split>
-      ) : (
-        <div className={`${styles.no_notes}`}>
-          <h1>You have no notes</h1>
-          <button className={`${styles.first_note}`} onClick={createNewNote}>
-            Create one now
-          </button>
-        </div>
-      )}
-    </main>
+    <>
+      <main>
+        {notes.length > 0 ? (
+          <Split
+            sizes={[30, 70]}
+            direction="horizontal"
+            className={`${styles.split}`}
+          >
+            <Sidebar
+              userStatus={userStatus}
+              notes={sortedNotes}
+              currentNote={currentNote}
+              setCurrentNoteId={setCurrentNoteId}
+              newNote={createNewNote}
+              deleteNotes={deleteNotes}
+              signOut={handleSignOut}
+            />
+            <Editor
+              tempNoteText={tempNoteText}
+              setTempNoteText={setTempNoteText}
+            />
+          </Split>
+        ) : (
+          <>
+            <style global jsx>{`
+              body {
+                background-image: url("../stacked-waves-haikei.svg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 100vh;
+                overflow: hidden;
+              }
+            `}</style>
+            <div className={`${styles.no_notes}`}>
+              <div className={`${styles.wrapper}`}>
+                <h1>You have no notes</h1>
+                <button
+                  className={`${styles.button__first__note}`}
+                  onClick={createNewNote}
+                >
+                  <span className={`${styles.button__first__note__content}`}>
+                    Create one now
+                  </span>
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </main>
+    </>
   );
 }

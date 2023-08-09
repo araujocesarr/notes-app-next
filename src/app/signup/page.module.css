@@ -128,3 +128,16 @@
 .fields input:not(:placeholder-shown) {
   border-color: rgb(150, 150, 200);
 }
+
+.link__return {
+  color: antiquewhite;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px 20px 15px 20px;
+  font-size: 12px;
+  height: 25px;
+}
+
+.link__return:hover {
+  text-decoration: underline;
+}

@@ -4,6 +4,7 @@ import React from "react";
 import signIn from "../firebase/auth/signin";
 import { useRouter } from "next/navigation";
 import { Passero_One } from "next/font/google";
+import Link from "next/link";
 
 function Page() {
   const [email, setEmail] = React.useState("");
@@ -63,6 +64,9 @@ function Page() {
                 Sign in
               </span>
             </button>
+            <Link href="/" className={`${styles.link__return}`}>
+              Don't have an account? Back to home
+            </Link>
           </div>
         </form>
       </div>
