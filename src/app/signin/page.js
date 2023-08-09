@@ -9,6 +9,8 @@ import Link from "next/link";
 function Page() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const router = useRouter();
 
   const handleForm = async (event) => {
@@ -17,8 +19,15 @@ function Page() {
     const { result, error } = await signIn(email, password);
 
     if (error) {
+      const errorCode = error.code.split("/")[1];
+      const formattedError = errorCode.replace(/-/g, " ");
+      const errorMessageWithUppercase =
+        formattedError.charAt(0).toUpperCase() + formattedError.slice(1);
+
+      setErrorMessage(errorMessageWithUppercase);
       return console.log(error);
     }
+    console.log(result);
 
     return router.push("/home");
   };
@@ -67,6 +76,9 @@ function Page() {
             <Link href="/" className={`${styles.link__return}`}>
               Don&apos;t have an account? Back to home
             </Link>
+            {errorMessage != "" && (
+              <h4 className={`${styles.error}`}>{errorMessage}!</h4>
+            )}
           </div>
         </form>
       </div>

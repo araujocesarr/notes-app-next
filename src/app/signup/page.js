@@ -12,16 +12,25 @@ function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const router = useRouter();
 
   const handleForm = async (event) => {
     event.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords does not match");
+      return console.log("password no coincide");
+    }
     const { result, error } = await signUp(email, password);
     if (error) {
+      const errorCode = error.code.split("/")[1];
+      const formattedError = errorCode.replace(/-/g, " ");
+      const errorMessageWithUppercase =
+        formattedError.charAt(0).toUpperCase() + formattedError.slice(1);
+
+      setErrorMessage(errorMessageWithUppercase);
       return console.log(error);
-    }
-    if (password != confirmPassword) {
-      return console.log("password no coincide");
     }
     console.log(result);
     return router.push("/home");
@@ -83,6 +92,9 @@ function Page() {
             <Link href="/signin" className={`${styles.link__return}`}>
               Do you have an account? Sign in
             </Link>
+            {errorMessage != "" && (
+              <h4 className={`${styles.error}`}>{errorMessage}!</h4>
+            )}
           </div>
         </form>
       </div>

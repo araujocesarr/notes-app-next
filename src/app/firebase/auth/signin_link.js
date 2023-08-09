@@ -7,6 +7,7 @@ export default async function signInLink(email, password) {
   let result = null,
     error = null;
   const user = auth.currentUser;
+  console.log(user);
   const anonymousCredential = EmailAuthProvider.credential(email, password);
   try {
     result = await linkWithCredential(user, anonymousCredential);
