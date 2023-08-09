@@ -2,22 +2,26 @@
 import React from "react";
 import styles from "../signup/page.module.css";
 
-import linkAnonAccount from "../firebase/auth/linkaccounts";
+import signInLink from "../firebase/auth/signin_link";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 function Page() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
   const router = useRouter();
 
   const handleForm = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await linkAnonAccount(email, password);
+    const { result, error } = await signInLink(email, password);
 
     if (error) {
       return console.log(error);
+    }
+    if (password != confirmPassword) {
+      return console.log("password no coincide");
     }
     console.log(result);
 
@@ -36,7 +40,7 @@ function Page() {
       `}</style>
       <div className={`${styles.form_wrapper}`}>
         <form onSubmit={handleForm} className={`${styles.form}`}>
-          <h1 className={`${styles.title}`}>Sign in</h1>
+          <h1 className={`${styles.title}`}>Sign up</h1>
           <div className={`${styles.inputs}`}>
             <div className={`${styles.fields}`}>
               <input
@@ -60,13 +64,24 @@ function Page() {
               />
               <label htmlFor="password">Password</label>
             </div>
-            <button className={`${styles.button__signup}`} type="submit">
+            <div className={`${styles.fields}`}>
+              <input
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder=""
+              />
+              <label htmlFor="password">Confirm Password</label>
+            </div>
+            <button type="submit" className={`${styles.button__signup}`}>
               <span className={`${styles.button__signup__content}`}>
-                Sign in
+                Sign up
               </span>
             </button>
-            <Link href="/" className={`${styles.link__return}`}>
-              Don&apos;t have an account? Back to home
+            <Link href="/signin" className={`${styles.link__return}`}>
+              Do you have an account? Sign in
             </Link>
           </div>
         </form>

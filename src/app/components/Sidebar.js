@@ -45,13 +45,15 @@ export default function Sidebar(props) {
           <span className={`${styles.button__notes__content}`}>Sign Out</span>
         </button>
         {props.userStatus && (
-          <Link href="/signin-anon" className={`${styles.link}`}>
-            <button className={`${styles.button__notes}`}>
-              <span className={`${styles.button__notes__content}`}>
-                Sign Up
-              </span>
-            </button>
-          </Link>
+          <>
+            <Link href="/signup-anon" className={`${styles.link}`}>
+              <button className={`${styles.button__notes}`}>
+                <span className={`${styles.button__notes__content}`}>
+                  Sign Up
+                </span>
+              </button>
+            </Link>
+          </>
         )}
       </div>
     </section>
