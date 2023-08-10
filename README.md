@@ -10,7 +10,9 @@ The Notes App website is responsible for storing and displaying users' notes. It
 Users can register with their email and password or log in to the application anonymously, with the possibility of passing their account to a registered user. 
 
 All authentication and storage of the application is managed with Firebase.  
+
 ## Screenshots 
+
 <img src="public/screenshot_desktop.jpeg" width="100%" height="90%">
 
 Desktop version
