@@ -29,5 +29,5 @@ Desktop version
 Mobile version
 
 # [Website Live](https://notes-app-next-araujocesarr.vercel.app/)
-## Auhor 
+## Author 
 -   Email -  [cesararaujo.perez@gmail.com](mailto:cesararaujo.perez@gmail.com)
