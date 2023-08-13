@@ -13,11 +13,18 @@ All authentication and storage of the application is managed with Firebase.
 
 ## Screenshots 
 
-<img src="public/screenshot_desktop.jpeg" width="100%" height="90%">
+<img src="public/screenshot_desktop.jpeg" width="50%" height="45%">
+<img src="public/screenshot_desktop2.jpeg" width="50%" height="45%">
+<img src="public/screenshot_desktop3.jpeg" width="50%" height="45%">
+<img src="public/screenshot_desktop4.jpeg" width="50%" height="45%">
+
 
 Desktop version
 
-<img src="public/screenshot_mobile.jpeg" width="auto" height="auto">
+<img src="public/screenshot_mobile.jpeg" width="auto" height="600px">
+<img src="public/screenshot_mobile4.jpeg" width="auto" height="600px">
+<img src="public/screenshot_mobile3.jpeg" width="auto" height="600px">
+<img src="public/screenshot_mobile2.jpeg" width="auto" height="600px">
 
 Mobile version
 
